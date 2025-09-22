@@ -83,13 +83,6 @@
 							</li>
 						</ul>
 					</div>	
-
-					<!-- Icon header -->
-					<div class="wrap-icon-header flex-w flex-r-m">
-						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search" >
-							<i class="zmdi zmdi-search" style="font-size:45px;"></i>
-						</div>
-					</div>
 				</nav>
 			</div>	
 		</div>
@@ -124,6 +117,42 @@
 				</form>
 			</div>
 		</div>
+			{% if messages %}
+			    <ul id="popup" class="messages">
+			        {% for message in messages %}
+			            <li class="msg {{ message.tags }}">{{ message }}</li>
+			        {% endfor %}
+			    </ul>
+			
+			    <style>
+			        .messages { 
+            			list-style: none; 
+            			padding: 0; 
+            			margin: 10px 0; 
+            			position: fixed;
+            			top: 20px;
+            			left: 20px;
+            			z-index: 9999;
+						        }
+			        .messages li {
+			            padding: 10px 20px;
+			            border-radius: 5px;
+			            margin-bottom: 5px;
+			            color: #fff;
+			            font-weight: bold;
+			            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+			        }
+			        .messages li.success { background-color: #4CAF50; }  
+			        .messages li.error { background-color: #f44336; }    
+			        .messages li.warning { background-color: #ff9800; }  
+			        .messages li.info { background-color: #2196F3; }     
+			    </style>
+			    <script>
+			        setTimeout(() => {
+			            document.getElementById('popup')?.remove();
+			        }, 3000);
+			    </script>
+			{% endif %}
 	</header>    
 
 {% block content %}{% endblock %}
@@ -223,16 +252,15 @@
 					<h4 class="stext-301 cl0 p-b-30">
 						Newsletter
 					</h4>
-
-					<form>
+					<form method="post" action="{% url 'mywebsite:newsletter' %}">
+						{% csrf_token %}
 						<div class="wrap-input1 w-full p-b-4">
 							<input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="email@example.com">
 							<div class="focus-input1 trans-04"></div>
 						</div>
-
 						<div class="p-t-18">
-							<button class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
-								Subscribe
+							<button type="submit" class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
+								Submit
 							</button>
 						</div>
 					</form>
