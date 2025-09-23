@@ -26,4 +26,5 @@ urlpatterns = [
     path('account/', include('account.urls')),
     path('captcha/', include('captcha.urls')), 
 ]
+handler404 = 'mysite.views.custom_page_not_found'
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

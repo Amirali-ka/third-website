@@ -3,6 +3,13 @@
 <!DOCTYPE html>
 <html lang="en">
 {% block content %}
+	<!--meta-->
+	<meta name="description" content="{{ posts.content|truncatewords:30 }}">
+	<meta name="keywords" content="blog, travel, {{ posts.category }}">
+	<meta name="author" content="{{ posts.author.username }}">
+	<meta property="og:title" content="{{ posts.title }}">
+	<meta property="og:description" content="{{ posts.content|truncatewords:30 }}">
+	<meta property="og:image" content="{{ posts.image.url }}">
 	<!-- Cart -->
 	<div class="wrap-header-cart js-panel-cart">
 		<div class="s-full js-hide-cart"></div>
