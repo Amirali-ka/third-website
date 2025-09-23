@@ -8,7 +8,7 @@
     "timezone": "Asia/Tehran"
     
   },
-  "app": "mysite-alibigdeli",
+  "app": "third-website",
   "disks": [
     {
       "name": "static",
