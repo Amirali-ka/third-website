@@ -4,7 +4,7 @@ from django.utils import timezone
 from blog.models import post,comment,category
 from blog.forms import commentform
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 def blog_view(request):
     posts=post.objects.filter(published_date__lte=timezone.now(),status=1)
