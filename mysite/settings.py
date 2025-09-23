@@ -141,7 +141,7 @@ STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'compressor.finders.CompressorFinder',
 ]
-COMPRESS_ROOT = BASE_DIR / "static"
+STATIC_ROOT = BASE_DIR / "mywebsite" / "static"
 COMPRESS_URL = STATIC_URL
 COMPRESS_ENABLED = True
 COMPRESS_OFFLINE = True
