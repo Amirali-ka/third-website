@@ -21,6 +21,8 @@ class post (models.Model):
     published_date = models.DateTimeField(null=True)
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
+    def get_absolute_url(self):
+        return reverse("blog:blog-detail", kwargs={"pid": self.id})
 def __str__(self):
         return self.id
 class comment (models.Model) :
@@ -29,6 +31,7 @@ class comment (models.Model) :
     email=models.EmailField()
     subject=models.CharField(max_length=250)
     message=models.TextField()
+    status = models.BooleanField(default=False)
     login_require=models.BooleanField(default=False)
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)

@@ -14,10 +14,10 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            messages.success(request, "You have been enter")
+            messages.success(request, "You have been logged in successfully.")
             return redirect('/')
         else:
-            messages.error(request, "Your username or password is not correct.")
+            messages.error(request, "Your username/email or password is not correct.")
     return render(request, 'login.html')
 
 @login_required

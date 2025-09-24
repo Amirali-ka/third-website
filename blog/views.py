@@ -17,7 +17,7 @@ def blog_view(request):
     categories = category.objects.all().distinct()
     return render(request,'blog.html',{'posts':posts,'categories':categories})
 def blog_detail_view(request,pid):
-    t=comment.objects.filter(post=pid).count()
+    t=comment.objects.filter(post=pid,status=1).count()
     posts=get_object_or_404(post,pk=pid,published_date__lte=timezone.now(),status=1)
     posts.counted_views+=1
     posts.counted_comments=t
@@ -45,7 +45,7 @@ def blog_detail_view(request,pid):
            messages.add_message(request,messages.ERROR,'your submit is not successful')
     else:
         form=commentform()
-    comments=comment.objects.filter(post=posts).order_by('created_date')
+    comments=comment.objects.filter(post=posts,status=1).order_by('created_date')
     dict={'posts':posts,'next':next_post,'prev':prev_post,'comments':comments,'form':form,'postss':postss}
     return render(request,'blog_detail.html',dict)
 def blog_search(request):
